@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 14:28:33 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/11 23:31:07 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/13 20:51:53 by rapheww          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,25 +105,19 @@ int main(int ac, char **av)
     s_stack *a;
     s_stack *b;
     if (ac < 2 || (ac >= 2 && ft_verif_arg(av) != 0))
-    {
-        ft_printf("Error\n");
-        return (0);
-    }
+        return (ft_printf("Error\n"),0);
     numbers = ft_conv(ac, av, &size);
     if (ft_check_duplicate(numbers, size) == 1)
-    {
-        ft_printf("Error\n");
-        return (0);
-    }
+        return (ft_printf("Error\n"),0);
     a = ft_fill_stack(numbers, size);
     b = NULL;
-    pb(&a, &b);
-    pb(&a, &b);
-    rb(&b);
-    ra(&a);
-    printf("Stack A\n");
-    print_stack(a);
-    printf("Stack B\n");
-    print_stack(b);
+    if (ft_check_sort(a) == 0)
+        return (0);
+    if (size == 2)
+        return(sa(a),0);
+    if (size == 3)
+        return(ft_algo_3(&a), 0);
+    if (size == 4)
+        return(ft_algo_4(&a ,&b), 0);
     return (0);
 }

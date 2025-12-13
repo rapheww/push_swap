@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 19:42:50 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/11 23:20:44 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/13 20:23:59 by rapheww          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	pb(s_stack **a, s_stack **b)
 	*a = (*a)->next;
 	tmp->next = NULL;
 	ft_stackadd_front(b, tmp);
-	ft_printf("pa\n");
+	ft_printf("pb\n");
 }
 
 void	ra(s_stack **a)
