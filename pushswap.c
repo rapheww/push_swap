@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 14:28:33 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/13 20:51:53 by rapheww          ###   ########.fr       */
+/*   Updated: 2025/12/16 18:47:37 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int main(int ac, char **av)
     int size;
     s_stack *a;
     s_stack *b;
+    s_counting *counter;
+    
     if (ac < 2 || (ac >= 2 && ft_verif_arg(av) != 0))
         return (ft_printf("Error\n"),0);
     numbers = ft_conv(ac, av, &size);
@@ -113,11 +115,27 @@ int main(int ac, char **av)
     b = NULL;
     if (ft_check_sort(a) == 0)
         return (0);
-    if (size == 2)
+    else if (size == 2)
         return(sa(a),0);
-    if (size == 3)
-        return(ft_algo_3(&a), 0);
-    if (size == 4)
-        return(ft_algo_4(&a ,&b), 0);
+    else if (size == 3)
+        ft_algo_3(&a);
+    else if (size == 4)
+        ft_algo_4(&a ,&b);
+    else if (size == 5)
+        ft_algo_5(&a, &b);
+    else
+    {
+        pb(&a, &b);
+        pb(&a, &b);
+        pb(&a, &b);
+        counter = count_operations(9, a, b);
+        printf("Stack a :\n");
+        print_stack(a);
+        printf("Stack B : \n");
+        print_stack(b);
+        printf("value a : %i\n", counter->value_a);
+        printf("value b : %i\n", counter->value_b);
+        printf("nombres d'operations: %i\n", counter->count);
+    }
     return (0);
 }

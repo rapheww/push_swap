@@ -24,15 +24,6 @@ s_stack	*ft_stacknew(int content)
 	return (new);
 }
 
-// void	ft_lstiter(s_stack *lst, void (*f)(void *))
-// {
-// 	while (lst)
-// 	{
-// 		f(lst->content);
-// 		lst = lst->next;
-// 	}
-// }
-
 void	ft_stackadd_front(s_stack **lst, s_stack *new)
 {
 	new->next = *lst;
