@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 13:26:39 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/16 16:05:30 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:09:27 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,17 @@ int find_min(s_stack *a)
         tmp = tmp->next;   
     }
     return (index);
+}
+
+int get_index(int n, s_stack *s)
+{
+    int i;
+
+    i = 0;
+    while(s && s->content != n)
+    {
+        i++;
+        s = s->next;
+    }
+    return (i);
 }

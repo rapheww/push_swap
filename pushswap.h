@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:46:53 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/16 17:59:25 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/18 18:09:09 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct t_stack
 {
 	int				content;
 	struct t_stack	*next;
+	// int				index;
 }					s_stack;
 
 typedef struct t_counting
@@ -59,7 +60,7 @@ void				ft_algo_3(s_stack **a);
 void				ft_algo_4(s_stack **a, s_stack **b);
 void				ft_push_min(s_stack **a, s_stack **b);
 void				ft_algo_5(s_stack **a, s_stack **b);
-void				ft_algo_max(s_stack **a, s_stack **b);
+int				ft_sort_push(s_stack **a, s_stack **b);
 
 // CHECK STACK
 
@@ -67,10 +68,15 @@ int					stack_len(s_stack *s);
 int					find_max(s_stack *a);
 int					find_min(s_stack *a);
 int					ft_check_sort(s_stack *a);
-
+int					get_min(s_stack *a);
+int					get_max(s_stack *a);
+int					get_index(int n, s_stack *s);
 // COUNT OP
 
 s_counting			*count_operations(int num, s_stack *a, s_stack *b);
 s_counting			*create_counting(void);
+s_counting			*find_best(s_stack *a, s_stack *b);
+
+void				print_stack(s_stack *stack);
 
 #endif

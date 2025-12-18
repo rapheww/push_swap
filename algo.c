@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 18:21:12 by rapheww           #+#    #+#             */
-/*   Updated: 2025/12/16 16:04:21 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/18 18:08:40 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,70 @@ int stack_len(s_stack *s)
     int i;
     
     i = 0;
-    while (s && s->next)
+    while (s)
     {
         i++;
         s = s->next;
     }
     return (i);
+}
+
+int ft_sort_push(s_stack **a, s_stack **b)
+{
+    s_counting *best;
+
+    pb(a, b);
+    pb(a, b);
+    while(*a)
+    {
+        best = find_best(*a, *b);
+        if (!best)
+            return (0);
+        if(*a && get_index(best->value_a, *a) <= stack_len(*a) / 2)
+        {
+            if (*b && get_index(best->value_b, *b) <= stack_len(*b) / 2)
+            {
+                while ((*a)->content != best->value_a 
+                        && (*b)->content != best->value_b)
+                        rr(a, b);
+            }
+        }
+        else if(*a && get_index(best->value_a, *a) > stack_len(*a) / 2)
+        {
+            if (*b && get_index(best->value_b, *b) > stack_len(*b) / 2)
+            {
+                while ((*a)->content != best->value_a 
+                        && (*b)->content != best->value_b)
+                        rrr(a, b);
+            }
+        }
+        if (*a && get_index(best->value_a, *a) > stack_len(*a) / 2)
+        {
+            while ((*a)->content != best->value_a)
+                rra(a);
+        }
+        else 
+        {
+            while((*a)->content != best->value_a)
+                ra(a);
+        }
+        if (*b && get_index(best->value_b, *b) > stack_len(*b) / 2)
+        {
+            while ((*b)->content != best->value_b)
+                rrb(b);
+        }
+        else 
+        {
+            while((*b)->content != best->value_b)
+                rb(b);
+        }
+        pb(a,b);
+    }
+    while((*b)->content != get_max(*b))
+        rb(b);
+    while(*b)
+        pa(a, b);
+    return (1);
 }
 
 // void ft_algo_max(s_stack **a, s_stack **b)

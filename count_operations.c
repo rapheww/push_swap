@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:44:21 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/16 18:46:26 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:09:21 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ s_counting *create_counting(void)
     s_counting *new;
     
     new = malloc(sizeof(s_counting));
+    if (!new)
+        return (NULL);
     new->value_b = 0;
     new->count = 0;
     new->value_a = 0;
@@ -83,6 +85,8 @@ s_counting *count_operations(int num, s_stack *a, s_stack *b)
     s_stack *tmp;
 
     counter = create_counting();
+    if (!counter)
+        return (NULL);
     counter->value_a = num;
     counter->value_b = b->content;
     tmp = b;
@@ -91,10 +95,8 @@ s_counting *count_operations(int num, s_stack *a, s_stack *b)
         while(tmp)
         {
             if (tmp->content < num)
-            {
-                if (num - tmp->content < counter->value_b - num)
+                if (num - tmp->content < num - counter->value_b || num - counter->value_b < 0)
                     counter->value_b = tmp->content;
-            }
             tmp = tmp->next;
         }
     }
@@ -106,3 +108,22 @@ s_counting *count_operations(int num, s_stack *a, s_stack *b)
     return (counter);
 }
 
+s_counting *find_best(s_stack *a, s_stack *b)
+{
+    s_stack *tmp;
+    s_counting *num;
+    s_counting *best;
+
+    best = count_operations(a->content, a, b);
+    tmp = a->next;
+    while(tmp)
+    {
+        num = count_operations(tmp->content, a, b);
+        if (best->count > num->count)
+            best = num;
+        tmp = tmp->next;
+    }
+    if (best->value_a < get_min(b))
+            best->value_b = get_max(b);
+    return (best);
+}

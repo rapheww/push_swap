@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 14:28:33 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/16 18:47:37 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/18 18:25:51 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,12 @@ int main(int ac, char **av)
     int size;
     s_stack *a;
     s_stack *b;
-    s_counting *counter;
     
     if (ac < 2 || (ac >= 2 && ft_verif_arg(av) != 0))
         return (ft_printf("Error\n"),0);
     numbers = ft_conv(ac, av, &size);
+    if (!numbers)
+        return(0);
     if (ft_check_duplicate(numbers, size) == 1)
         return (ft_printf("Error\n"),0);
     a = ft_fill_stack(numbers, size);
@@ -124,18 +125,6 @@ int main(int ac, char **av)
     else if (size == 5)
         ft_algo_5(&a, &b);
     else
-    {
-        pb(&a, &b);
-        pb(&a, &b);
-        pb(&a, &b);
-        counter = count_operations(9, a, b);
-        printf("Stack a :\n");
-        print_stack(a);
-        printf("Stack B : \n");
-        print_stack(b);
-        printf("value a : %i\n", counter->value_a);
-        printf("value b : %i\n", counter->value_b);
-        printf("nombres d'operations: %i\n", counter->count);
-    }
+        ft_sort_push(&a, &b);
     return (0);
 }
