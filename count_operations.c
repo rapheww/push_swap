@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:44:21 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/20 17:28:18 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/20 17:51:00 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,6 @@ s_counting *create_counting(void)
     new->value_a = 0;
     return(new);
 }
-
-// void count_sa(int num, s_stack *s, s_counting **counter)
-// {
-//     int i;
-//     s_stack *tmp;
-//     int len;
-
-//     i = 0;
-//     len = stack_len(s);
-//     tmp = s;
-//     while (tmp && tmp->content != num)
-//     {
-//         tmp = tmp->next;
-//         i++;
-//     }
-//     if (i > len / 2)
-//         (*counter)->count += len - i + 1;
-//     else if (i == len / 2)
-//         (*counter)->count += len / 2;
-//     else
-//         (*counter)->count += i;
-// }
 
 int get_min(s_stack *a)
 {
@@ -137,35 +115,6 @@ s_counting *count_operations(int num, s_stack *a, s_stack *b)
     count_sa(a, b, &counter);
     return (counter);
 }
-
-// s_counting *count_operations(int num, s_stack *a, s_stack *b)
-// {
-//     s_counting *counter;
-//     s_stack *tmp;
-
-//     counter = create_counting();
-//     if (!counter)
-//         return (NULL);
-//     counter->value_a = num;
-//     counter->value_b = b->content;
-//     tmp = b;
-//     if (get_min(b) < counter->value_a)
-//     {
-//         while(tmp)
-//         {
-//             if (tmp->content < num)
-//                 if (num - tmp->content < num - counter->value_b || num - counter->value_b < 0)
-//                     counter->value_b = tmp->content;
-//             tmp = tmp->next;
-//         }
-//     }
-//     else
-//         counter->value_b = get_max(b);
-//     count_sa(counter->value_a, a, &counter);
-//     count_sa(counter->value_b, b, &counter);
-//     counter->count += 1;
-//     return (counter);
-// }
 
 s_counting *find_best(s_stack *a, s_stack *b)
 {
