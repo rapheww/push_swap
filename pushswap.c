@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 14:28:33 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/18 18:25:51 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/20 16:57:39 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int main(int ac, char **av)
     s_stack *a;
     s_stack *b;
     
-    if (ac < 2 || (ac >= 2 && ft_verif_arg(av) != 0))
+    if (ac < 2 || (ac >= 2 && ft_verif_arg(av)) || checks_lim(&size, ac, av))
         return (ft_printf("Error\n"),0);
     numbers = ft_conv(ac, av, &size);
     if (!numbers)

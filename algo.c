@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 18:21:12 by rapheww           #+#    #+#             */
-/*   Updated: 2025/12/18 18:08:40 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/20 17:25:02 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,27 @@ int ft_sort_push(s_stack **a, s_stack **b)
         best = find_best(*a, *b);
         if (!best)
             return (0);
-        if(*a && get_index(best->value_a, *a) <= stack_len(*a) / 2)
+        if ((*a)->next && (*a)->next->content == best->value_a)
+			sa(*a);
+        if(*a && get_index(best->value_a, *a) <= stack_len(*a) / 2 && (*a)->content != best->value_a)
         {
-            if (*b && get_index(best->value_b, *b) <= stack_len(*b) / 2)
+            if (*b && get_index(best->value_b, *b) <= stack_len(*b) / 2 && (*b)->content != best->value_b)
             {
                 while ((*a)->content != best->value_a 
                         && (*b)->content != best->value_b)
                         rr(a, b);
             }
         }
-        else if(*a && get_index(best->value_a, *a) > stack_len(*a) / 2)
+        if(*a && get_index(best->value_a, *a) > stack_len(*a) / 2 && (*a)->content != best->value_a)
         {
-            if (*b && get_index(best->value_b, *b) > stack_len(*b) / 2)
+            if (*b && get_index(best->value_b, *b) > stack_len(*b) / 2 && (*b)->content != best->value_b)
             {
                 while ((*a)->content != best->value_a 
                         && (*b)->content != best->value_b)
                         rrr(a, b);
             }
         }
-        if (*a && get_index(best->value_a, *a) > stack_len(*a) / 2)
+        if (*a && get_index(best->value_a, *a) > stack_len(*a) / 2 && (*a)->content != best->value_a)
         {
             while ((*a)->content != best->value_a)
                 rra(a);
@@ -112,7 +114,7 @@ int ft_sort_push(s_stack **a, s_stack **b)
             while((*a)->content != best->value_a)
                 ra(a);
         }
-        if (*b && get_index(best->value_b, *b) > stack_len(*b) / 2)
+        if (*b && get_index(best->value_b, *b) > stack_len(*b) / 2 && (*b)->content != best->value_b)
         {
             while ((*b)->content != best->value_b)
                 rrb(b);

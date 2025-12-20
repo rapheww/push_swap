@@ -6,7 +6,7 @@
 /*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:46:53 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/18 18:09:09 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/20 16:30:57 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ s_counting			*create_counting(void);
 s_counting			*find_best(s_stack *a, s_stack *b);
 
 void				print_stack(s_stack *stack);
-
+int ft_check_limits(long *tab, int size);
+long *ft_conv_long(int ac, char **av, int *size);
+int checks_lim(int *size, int ac, char **av);
 #endif
