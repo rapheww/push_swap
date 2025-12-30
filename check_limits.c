@@ -6,7 +6,7 @@
 /*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 15:21:25 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/25 23:20:36 by rapheww          ###   ########.fr       */
+/*   Updated: 2025/12/30 15:30:50 by rapheww          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,14 @@ long	*ft_conv_long(int ac, char **av, int *size)
 	long	*result;
 	int		count;
 
-	i = 0;
+	i = -1;
 	count = 0;
 	if (ac == 2)
+	{
 		temp = ft_split(av[1], ' ');
+		if (!temp)
+			return (0);
+	}
 	else
 		temp = av + 1;
 	while (temp[count])
@@ -56,11 +60,8 @@ long	*ft_conv_long(int ac, char **av, int *size)
 	result = malloc(sizeof(long) * count);
 	if (!result)
 		return (0);
-	while (temp[i])
-	{
+	while (temp[++i])
 		result[i] = ft_atol(temp[i]);
-		i++;
-	}
 	*size = count;
 	return (result);
 }
@@ -84,6 +85,8 @@ int	checks_lim(int *size, int ac, char **av)
 	long	*tab;
 
 	tab = ft_conv_long(ac, av, size);
+	if (!tab)
+		return (0);
 	if (ft_check_limits(tab, *size) == 1)
 		return (1);
 	return (0);

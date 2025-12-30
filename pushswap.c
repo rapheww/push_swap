@@ -6,7 +6,7 @@
 /*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 14:28:33 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/25 23:19:06 by rapheww          ###   ########.fr       */
+/*   Updated: 2025/12/30 15:40:57 by rapheww          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,14 @@ int	*ft_conv(int ac, char **av, int *size)
 	int		*result;
 	int		count;
 
-	i = 0;
+	i = -1;
 	count = 0;
 	if (ac == 2)
+	{
 		temp = ft_split(av[1], ' ');
+		if (!temp)
+			return (NULL);
+	}
 	else
 		temp = av + 1;
 	while (temp[count])
@@ -57,11 +61,8 @@ int	*ft_conv(int ac, char **av, int *size)
 	result = malloc(sizeof(int) * count);
 	if (!result)
 		return (NULL);
-	while (temp[i])
-	{
+	while (temp[++i])
 		result[i] = ft_atoi(temp[i]);
-		i++;
-	}
 	*size = count;
 	return (result);
 }
@@ -133,5 +134,6 @@ int	main(int ac, char **av)
 		ft_algo_3(&a);
 	else
 		algo_max(&a, &b);
+	free_all(numbers);
 	return (0);
 }

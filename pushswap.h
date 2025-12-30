@@ -6,7 +6,7 @@
 /*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:46:53 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/25 23:13:45 by rapheww          ###   ########.fr       */
+/*   Updated: 2025/12/30 15:41:01 by rapheww          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,8 @@ void				print_stack(t_stack *stack);
 int					ft_check_limits(long *tab, int size);
 long				*ft_conv_long(int ac, char **av, int *size);
 int					checks_lim(int *size, int ac, char **av);
+
+// FREE
+
+void				free_all(int *numbers);
 #endif
