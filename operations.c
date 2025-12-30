@@ -6,13 +6,13 @@
 /*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 19:42:50 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/13 20:23:59 by rapheww          ###   ########.fr       */
+/*   Updated: 2025/12/25 23:15:34 by rapheww          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	sa(s_stack *a)
+void	sa(t_stack *a)
 {
 	int	tmp;
 
@@ -23,7 +23,8 @@ void	sa(s_stack *a)
 	a->next->content = tmp;
 	ft_printf("sa\n");
 }
-void	sb(s_stack *b)
+
+void	sb(t_stack *b)
 {
 	int	tmp;
 
@@ -35,7 +36,7 @@ void	sb(s_stack *b)
 	ft_printf("sb\n");
 }
 
-void	ss(s_stack *a, s_stack *b)
+void	ss(t_stack *a, t_stack *b)
 {
 	int	tmpb;
 	int	tmpa;
@@ -55,9 +56,9 @@ void	ss(s_stack *a, s_stack *b)
 	ft_printf("ss\n");
 }
 
-void	pa(s_stack **a, s_stack **b)
+void	pa(t_stack **a, t_stack **b)
 {
-	s_stack	*tmp;
+	t_stack	*tmp;
 
 	tmp = *b;
 	*b = (*b)->next;
@@ -66,141 +67,13 @@ void	pa(s_stack **a, s_stack **b)
 	ft_printf("pa\n");
 }
 
-void	pb(s_stack **a, s_stack **b)
+void	pb(t_stack **a, t_stack **b)
 {
-	s_stack	*tmp;
+	t_stack	*tmp;
 
 	tmp = *a;
 	*a = (*a)->next;
 	tmp->next = NULL;
 	ft_stackadd_front(b, tmp);
 	ft_printf("pb\n");
-}
-
-void	ra(s_stack **a)
-{
-	s_stack	*tmp;
-	s_stack	*first;
-
-	if (*a && (*a)->next)
-	{
-		first = (*a)->next;
-		tmp = *a;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = *a;
-		(*a)->next = NULL;
-		*a = first;
-	}
-	ft_printf("ra\n");
-}
-
-void	rb(s_stack **b)
-{
-	s_stack	*tmp;
-	s_stack	*first;
-
-	if (*b && (*b)->next)
-	{
-		first = (*b)->next;
-		tmp = *b;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = *b;
-		(*b)->next = NULL;
-		*b = first;
-	}
-	ft_printf("rb\n");
-}
-
-void	rr(s_stack **a, s_stack **b)
-{
-	s_stack	*tmp;
-	s_stack	*first;
-
-	if (*a && (*a)->next)
-	{
-		first = (*a)->next;
-		tmp = *a;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = *a;
-		(*a)->next = NULL;
-		*a = first;
-	}
-	if (*b && (*b)->next)
-	{
-		first = (*b)->next;
-		tmp = *b;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = *b;
-		(*b)->next = NULL;
-		*b = first;
-	}
-	ft_printf("rr\n");
-}
-
-void	rra(s_stack **a)
-{
-	s_stack	*newlast;
-	s_stack	*newfirst;
-
-	if (*a && (*a)->next)
-	{
-		newlast = *a;
-		while (newlast->next->next)
-			newlast = newlast->next;
-		newfirst = newlast->next;
-		newfirst->next = *a;
-		*a = newfirst;
-		newlast->next = NULL;
-	}
-	ft_printf("rra\n");
-}
-
-void	rrb(s_stack **b)
-{
-	s_stack *newlast;
-	s_stack *newfirst;
-
-	if (*b && (*b)->next)
-	{
-		newlast = *b;
-		while (newlast->next->next)
-			newlast = newlast->next;
-		newfirst = newlast->next;
-		newfirst->next = *b;
-		*b = newfirst;
-		newlast->next = NULL;
-	}
-	ft_printf("rrb\n");
-}
-
-void rrr(s_stack **a, s_stack **b)
-{
-    s_stack	*newlast;
-	s_stack	*newfirst;
-
-	if (*a && (*a)->next)
-	{
-		newlast = *a;
-		while (newlast->next->next)
-			newlast = newlast->next;
-		newfirst = newlast->next;
-		newfirst->next = *a;
-		*a = newfirst;
-		newlast->next = NULL;
-	}
-    if (*b && (*b)->next)
-	{
-		newlast = *b;
-		while (newlast->next->next)
-			newlast = newlast->next;
-		newfirst = newlast->next;
-		newfirst->next = *b;
-		*b = newfirst;
-		newlast->next = NULL;
-	}
-    ft_printf("rrr\n");
 }

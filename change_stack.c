@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   change_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:44:03 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/17 18:46:08 by rchaumei         ###   ########.fr       */
+/*   Updated: 2025/12/25 23:12:19 by rapheww          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-s_stack	*ft_stacknew(int content)
+t_stack	*ft_stacknew(int content)
 {
-	s_stack	*new;
+	t_stack	*new;
 
-	new = malloc(sizeof(s_stack));
+	new = malloc(sizeof(t_stack));
 	if (!new)
 		return (NULL);
 	new->content = content;
@@ -24,15 +24,15 @@ s_stack	*ft_stacknew(int content)
 	return (new);
 }
 
-void	ft_stackadd_front(s_stack **lst, s_stack *new)
+void	ft_stackadd_front(t_stack **lst, t_stack *new)
 {
 	new->next = *lst;
 	*lst = new;
 }
 
-void	ft_stackadd_back(s_stack **lst, s_stack *new)
+void	ft_stackadd_back(t_stack **lst, t_stack *new)
 {
-	s_stack	*last;
+	t_stack	*last;
 
 	if (lst == NULL || new == NULL)
 		return ;
@@ -45,11 +45,27 @@ void	ft_stackadd_back(s_stack **lst, s_stack *new)
 	last->next = new;
 }
 
-s_stack	*ft_stacklast(s_stack *lst)
- {
- 	if (lst == NULL)
- 		return (NULL);
+t_stack	*ft_stacklast(t_stack *lst)
+{
+	if (lst == NULL)
+		return (NULL);
 	while (lst->next)
 		lst = lst->next;
 	return (lst);
+}
+
+t_stack	*ft_fill_stack(int *numbers, int size)
+{
+	int		i;
+	t_stack	*a;
+
+	i = 0;
+	a = ft_stacknew(numbers[i]);
+	i++;
+	while (i < size)
+	{
+		ft_stackadd_back(&a, ft_stacknew(numbers[i]));
+		i++;
+	}
+	return (a);
 }
