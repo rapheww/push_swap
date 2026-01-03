@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:46:53 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/30 15:41:01 by rapheww          ###   ########.fr       */
+/*   Updated: 2026/01/03 13:45:11 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void				rrr(t_stack **a, t_stack **b);
 
 // ALGO
 
+void				choose_algo(t_stack **a, t_stack **b, int size);
 void				ft_algo_3(t_stack **a);
+void				ft_algo_4(t_stack **a, t_stack **b);
+void				ft_algo_5(t_stack **a, t_stack **b);
 int					algo_max(t_stack **a, t_stack **b);
 
 // CHECK STACK
@@ -82,5 +85,6 @@ int					checks_lim(int *size, int ac, char **av);
 
 // FREE
 
-void				free_all(int *numbers);
+void				free_all(t_stack **a);
+
 #endif

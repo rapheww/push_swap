@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 14:28:33 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/30 15:40:57 by rapheww          ###   ########.fr       */
+/*   Updated: 2026/01/03 15:02:06 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_verif_arg(char **av)
 		{
 			if (av[i][j] == '-' || av[i][j] == '+')
 			{
+				if (j != 0 && av[i][j - 1] != 32)
+					return (1);
 				if (av[i][j + 1] == '\0' || (av[i][j + 1] < '0' || av[i][j
 						+ 1] > '9'))
 					return (1);
@@ -98,24 +100,24 @@ int	ft_check_sort(t_stack *s)
 	return (0);
 }
 
-// void	print_stack(t_stack *stack)
-// {
-// 	t_stack	*tmp;
+void	print_stack(t_stack *stack)
+{
+	t_stack	*tmp;
 
-// 	tmp = stack;
-// 	while (tmp)
-// 	{
-// 		printf("%d\n", tmp->content);
-// 		tmp = tmp->next;
-// 	}
-// }
+	tmp = stack;
+	while (tmp)
+	{
+		printf("%d\n", tmp->content);
+		tmp = tmp->next;
+	}
+}
 
 int	main(int ac, char **av)
 {
 	int		*numbers;
 	int		size;
-	t_stack	*a;
 	t_stack	*b;
+	t_stack	*a;
 
 	if (ac < 2 || (ac >= 2 && ft_verif_arg(av)) || checks_lim(&size, ac, av))
 		return (ft_printf("Error\n"), 0);
@@ -123,17 +125,16 @@ int	main(int ac, char **av)
 	if (!numbers)
 		return (0);
 	if (ft_check_duplicate(numbers, size) == 1)
-		return (ft_printf("Error\n"), 0);
+		return (free(numbers), ft_printf("Error\n"), 0);
 	a = ft_fill_stack(numbers, size);
+	if (!a)
+		return (free(numbers), 0);
 	b = NULL;
 	if (ft_check_sort(a) == 0)
-		return (0);
-	else if (size == 2)
-		return (sa(a), 0);
-	else if (size == 3)
-		ft_algo_3(&a);
-	else
-		algo_max(&a, &b);
-	free_all(numbers);
+		return (free_all(&a), free(numbers), 0);
+	choose_algo(&a, &b, size);
+	free_all(&a);
+	free_all(&b);
+	free(numbers);
 	return (0);
 }

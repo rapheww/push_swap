@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 15:44:21 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/25 23:09:32 by rapheww          ###   ########.fr       */
+/*   Updated: 2026/01/03 13:56:28 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_counting	*create_counting(void)
 	return (new);
 }
 
-void	define_counts(int *count, t_stack *s, t_counting **counter, int i)
+void	define_counts(int *count, t_stack *s, int i)
 {
 	if (i > stack_len(s) / 2)
 		*count = stack_len(s) - i + 1;
@@ -42,9 +42,9 @@ void	count_sa(t_stack *a, t_stack *b, t_counting **counter)
 	int	i;
 
 	i = get_index((*counter)->value_a, a);
-	define_counts(&count_a, a, counter, i);
+	define_counts(&count_a, a, i);
 	i = get_index((*counter)->value_b, b);
-	define_counts(&count_b, b, counter, i);
+	define_counts(&count_b, b, i);
 	if ((get_index((*counter)->value_a, a) <= stack_len(a) / 2
 			&& get_index((*counter)->value_b, b) <= stack_len(a) / 2)
 		|| (get_index((*counter)->value_a, a) > stack_len(a) / 2
@@ -66,7 +66,7 @@ t_counting	*count_operations(int num, t_stack *a, t_stack *b)
 
 	counter = create_counting();
 	if (!counter)
-		return (NULL);
+		return (free(counter), NULL);
 	counter->value_a = num;
 	counter->value_b = b->content;
 	tmp = b;
@@ -101,9 +101,14 @@ t_counting	*find_best(t_stack *a, t_stack *b)
 	{
 		num = count_operations(tmp->content, a, b);
 		if (!num)
-			return (NULL);
+			return (free(best), NULL);
 		if (best->count > num->count)
+		{
+			free(best);
 			best = num;
+		}
+		else
+			free(num);
 		tmp = tmp->next;
 	}
 	if (best->value_a < get_min(b))

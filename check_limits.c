@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_limits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 15:21:25 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/30 15:30:50 by rapheww          ###   ########.fr       */
+/*   Updated: 2026/01/03 12:57:13 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int	checks_lim(int *size, int ac, char **av)
 		return (0);
 	if (ft_check_limits(tab, *size) == 1)
 		return (1);
+	free(tab);
 	return (0);
 }

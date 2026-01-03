@@ -3,16 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 15:32:19 by rapheww           #+#    #+#             */
-/*   Updated: 2025/12/30 15:41:12 by rapheww          ###   ########.fr       */
+/*   Updated: 2026/01/03 13:57:56 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void free_all(int *numbers)
+void	free_all(t_stack **a)
 {
-    free(numbers);
+	t_stack	*tmp;
+
+	while (*a)
+	{
+		tmp = *a;
+		*a = (*a)->next;
+		free(tmp);
+	}
 }

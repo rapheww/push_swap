@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapheww <rapheww@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rchaumei <rchaumei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:44:03 by rchaumei          #+#    #+#             */
-/*   Updated: 2025/12/25 23:12:19 by rapheww          ###   ########.fr       */
+/*   Updated: 2026/01/03 13:57:49 by rchaumei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,23 @@ t_stack	*ft_fill_stack(int *numbers, int size)
 {
 	int		i;
 	t_stack	*a;
+	t_stack	*tmp;
 
 	i = 0;
 	a = ft_stacknew(numbers[i]);
+	if (!a)
+		return (free(a), NULL);
 	i++;
 	while (i < size)
 	{
-		ft_stackadd_back(&a, ft_stacknew(numbers[i]));
+		tmp = ft_stacknew(numbers[i]);
+		if (!tmp)
+		{
+			free(tmp);
+			free_all(&a);
+			return (NULL);
+		}
+		ft_stackadd_back(&a, tmp);
 		i++;
 	}
 	return (a);
